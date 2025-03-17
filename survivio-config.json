@@ -19,6 +19,12 @@
 	"gameConfig": {
 		"player": {
 			"defaultItems": {
+				"weapons": [
+					{ "type": "", "ammo": 0 },
+					{ "type": "", "ammo": 0 },
+					{ "type": "fists", "ammo": 0 },
+					{ "type": "", "ammo": 0 }
+				],
 				"backpack": "backpack03",
 				"helmet": "helmet03",
 				"chest": "chest03",
