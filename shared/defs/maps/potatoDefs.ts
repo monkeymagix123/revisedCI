@@ -147,21 +147,42 @@ const mapDef = {
             { name: "potato_smg", count: 1, weight: 1},
         ],
 
-        // from wiki, random guess
+        // // from wiki, random guess
+        // tier_potato_perks: [
+        //     { name: "", count: 1, weight: 480 },
+        //     { name: "firepower", count: 1, weight: 15 },
+        //     { name: "windwalk", count: 1, weight: 15 },
+        //     { name: "endless_ammo", count: 1, weight: 15 },
+        //     { name: "splinter", count: 1, weight: 15 },
+        //     { name: "small_arms", count: 1, weight: 15 },
+        //     { name: "takedown", count: 1, weight: 15 },
+        //     { name: "field_medic", count: 1, weight: 15 },
+        //     { name: "scavenger", count: 1, weight: 15 },
+        //     { name: "chambered", count: 1, weight: 15 },
+        //     { name: "martyrdom", count: 1, weight: 15 },
+        //     { name: "self_revive", count: 1, weight: 15 },
+        //     { name: "tree_climbing", count: 1, weight: 15 }
+        // ],
+        // from code
+        tier_perks: [
+            { name: "firepower", count: 1, weight: 1 },
+            { name: "windwalk", count: 1, weight: 1 },
+            { name: "endless_ammo", count: 1, weight: 1 },
+            { name: "steelskin", count: 1, weight: 1 },
+            { name: "splinter", count: 1, weight: 1 },
+            { name: "small_arms", count: 1, weight: 1 },
+            { name: "takedown", count: 1, weight: 1 },
+            { name: "field_medic", count: 1, weight: 1 },
+            { name: "tree_climbing", count: 1, weight: 1 },
+            { name: "scavenger", count: 1, weight: 1 },
+            { name: "chambered", count: 1, weight: 1 },
+            { name: "martyrdom", count: 1, weight: 1 },
+            { name: "self_revive", count: 1, weight: 1 },
+            { name: "bonus_9mm", count: 1, weight: 1 },
+        ],
         tier_potato_perks: [
-            { name: "", count: 1, weight: 480 },
-            { name: "firepower", count: 1, weight: 15 },
-            { name: "windwalk", count: 1, weight: 15 },
-            { name: "endless_ammo", count: 1, weight: 15 },
-            { name: "splinter", count: 1, weight: 15 },
-            { name: "small_arms", count: 1, weight: 15 },
-            { name: "takedown", count: 1, weight: 15 },
-            { name: "field_medic", count: 1, weight: 15 },
-            { name: "scavenger", count: 1, weight: 15 },
-            { name: "chambered", count: 1, weight: 15 },
-            { name: "martyrdom", count: 1, weight: 15 },
-            { name: "self_revive", count: 1, weight: 15 },
-            { name: "tree_climbing", count: 1, weight: 15 }
+            { name: "", count: 1, weight: 25 },
+            { name: "tier_perks", count: 1, weight: 1 },
         ],
 
         tier_pguns: [
