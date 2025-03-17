@@ -460,6 +460,16 @@ export const Main: MapDef = {
             { name: "explosive", count: 1, weight: 1 },
             { name: "splinter", count: 1, weight: 1 },
         ],
+        // from actual one
+        tier_faction_outfits: [
+            { name: "outfitVerde", count: 1, weight: 1 },
+            { name: "outfitWoodland", count: 1, weight: 1 },
+            { name: "outfitKeyLime", count: 1, weight: 1 },
+            { name: "outfitCamo", count: 1, weight: 1 },
+        ],
+        tier_airdrop_faction_outfits: [{ name: "outfitGhillie", count: 1, weight: 1 }],
+        tier_airdrop_faction_melee: [{ name: "pan", count: 1, weight: 1 }],
+
         // new, attempt (too lazy, inaccurate)
         // tier_scvadv: [
         //     { name: "tier_airdrop_rare", count: 1, weight: 1 },
