@@ -1,0 +1,19 @@
+{
+	"modes": [
+		{
+			"mapName": "potato",
+			"teamMode": 1,
+			"enabled": true
+		},
+		{
+			"mapName": "savannah",
+			"teamMode": 2,
+			"enabled": true
+		},
+		{
+			"mapName": "cobalt",
+			"teamMode": 4,
+			"enabled": true
+		}
+	]
+}

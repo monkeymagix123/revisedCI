@@ -1,0 +1,181 @@
+// maybe potato?? (???)
+if (params.source instanceof Player && def.swapWeaponOnDestroy) {
+    const psrc = params.source as Player;
+    // figure out type
+    // if (psrc.activeWeapon) {}
+    if (GameConfig.WeaponType[psrc.curWeapIdx] === "gun") {
+        // give a gun
+        // code
+        const count = util.randomInt(lootTierOrItem.min!, lootTierOrItem.max!);
+        // however this is adding the item
+        for (let i = 0; i < count; i++) {
+            const items = this.game.lootBarn.getLootTable(lootTierOrItem.tier!);
+
+            for (const item of items) {
+                const type = item.name;
+                const pos = v2.add(lootPos, v2.mul(v2.randomUnit(), 0.2));
+                const layer = this.layer;
+                const pushSpeed = 0; // undefined to use default push speed value
+                const dir = params.dir;
+                const preloadGun = true;
+
+                const loot = new Loot(this.game, type, pos, layer, 1, pushSpeed, dir);
+
+                if (preloadGun) {
+                    loot.isPreloadedGun = true;
+                }
+
+                const def = GameObjectDefs[type];
+
+                const ammoCount = def.ammoSpawnCount;
+                if (ammoCount <= 0) continue;
+                const halfAmmo = Math.ceil(ammoCount / 2);
+
+                const leftAmmo = new Loot(
+                    this.game,
+                    def.ammo,
+                    v2.add(pos, v2.create(-AMMO_OFFSET_X, AMMO_OFFSET_Y)),
+                    layer,
+                    halfAmmo,
+                    pushSpeed,
+                    dir,
+                );
+                psrc.pickupLoot(leftAmmo);
+
+                if (ammoCount - halfAmmo >= 1) {
+                    const rightAmmo = new Loot(
+                        this.game,
+                        def.ammo,
+                        v2.add(pos, v2.create(AMMO_OFFSET_X, AMMO_OFFSET_Y)),
+                        layer,
+                        ammoCount - halfAmmo,
+                        pushSpeed,
+                        dir,
+                    );
+                    psrc.pickupLoot(rightAmmo);
+                }
+
+                psrc.pickupLoot(loot);
+            }
+        }
+
+        // psrc.pickupLoot([tierLoot("tier_potato_perks", 1, 1)] as Loot);
+    } else if (GameConfig.WeaponType[psrc.curWeapIdx] === "melee") {
+        // give a melee
+
+    } else if (GameConfig.WeaponType[psrc.curWeapIdx] === "throwable") {
+        // give a throwable
+    }
+    // fix by picking up loot (bug: if only 1 weapon currently)
+    // psrc.pickupLoot(); // figure out later
+}
+
+
+
+const lootTierOrItem = {
+    tier: "tier_pguns", // set later
+    min: 1,
+    max: 1,
+    props: {},
+}
+
+// code
+const count = util.randomInt(lootTierOrItem.min!, lootTierOrItem.max!);
+// however this is adding the item
+for (let i = 0; i < count; i++) {
+    const items = this.game.lootBarn.getLootTable(lootTierOrItem.tier!);
+
+    for (const item of items) {
+        // this.game.lootBarn.addLoot(
+        //     item.name,
+        //     v2.add(lootPos, v2.mul(v2.randomUnit(), 0.2)),
+        //     this.layer,
+        //     item.count,
+        //     undefined,
+        //     undefined, // undefined to use default push speed value
+        //     params.dir,
+        //     lootTierOrItem.props?.preloadGuns,
+        // );
+        const type = item.name;
+        const pos = v2.add(lootPos, v2.mul(v2.randomUnit(), 0.2));
+        const layer = this.layer;
+        const pushSpeed = 0; // undefined to use default push speed value
+        const dir = params.dir;
+        const preloadGun = true;
+
+        const loot = new Loot(this.game, type, pos, layer, 1, pushSpeed, dir);
+
+        if (preloadGun) {
+            loot.isPreloadedGun = true;
+        }
+
+        const def = GameObjectDefs[type];
+
+        const ammoCount = def.ammoSpawnCount;
+        if (ammoCount <= 0) return;
+        const halfAmmo = Math.ceil(ammoCount / 2);
+
+        const leftAmmo = new Loot(
+            this.game,
+            def.ammo,
+            v2.add(pos, v2.create(-AMMO_OFFSET_X, AMMO_OFFSET_Y)),
+            layer,
+            halfAmmo,
+            pushSpeed,
+            dir,
+        );
+
+        if (ammoCount - halfAmmo >= 1) {
+            const rightAmmo = new Loot(
+                this.game,
+                def.ammo,
+                v2.add(pos, v2.create(AMMO_OFFSET_X, AMMO_OFFSET_Y)),
+                layer,
+                ammoCount - halfAmmo,
+                pushSpeed,
+                dir,
+            );
+        }
+    }
+}
+
+const type = item.name;
+const pos = v2.add(lootPos, v2.mul(v2.randomUnit(), 0.2));
+const layer = this.layer;
+const pushSpeed = 0; // undefined to use default push speed value
+const dir = params.dir;
+const preloadGun = true;
+
+const loot = new Loot(this.game, type, pos, layer, 1, pushSpeed, dir);
+
+if (preloadGun) {
+    loot.isPreloadedGun = true;
+}
+
+const def = GameObjectDefs[type];
+
+const ammoCount = def.ammoSpawnCount;
+if (ammoCount <= 0) return;
+const halfAmmo = Math.ceil(ammoCount / 2);
+
+const leftAmmo = new Loot(
+    this.game,
+    def.ammo,
+    v2.add(pos, v2.create(-AMMO_OFFSET_X, AMMO_OFFSET_Y)),
+    layer,
+    halfAmmo,
+    pushSpeed,
+    dir,
+);
+
+if (ammoCount - halfAmmo >= 1) {
+    const rightAmmo = new Loot(
+        this.game,
+        def.ammo,
+        v2.add(pos, v2.create(AMMO_OFFSET_X, AMMO_OFFSET_Y)),
+        layer,
+        ammoCount - halfAmmo,
+        pushSpeed,
+        dir,
+    );
+}

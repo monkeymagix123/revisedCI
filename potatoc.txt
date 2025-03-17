@@ -1,0 +1,81 @@
+for gun:
+// give a gun
+                const t = "tier_pguns";
+                // const dum = GameObjectDefs[psrc.weapons[psrc.curWeapIdx].type];
+                // if (dum.type === "gun") {
+                //     t = dum.;
+                // }
+                const lootTierOrItem = {
+                    tier: t, // set later
+                    min: 1,
+                    max: 1,
+                    props: {},
+                }
+                // code
+                const count = util.randomInt(lootTierOrItem.min!, lootTierOrItem.max!);
+                // however this is adding the item
+                for (let i = 0; i < count; i++) {
+                    const items = this.game.lootBarn.getLootTable(lootTierOrItem.tier!);
+                    
+                    const item = items[0];
+                    let type = item.name;
+                    let pos = v2.add(lootPos, v2.mul(v2.randomUnit(), 0.2));
+                    let layer = this.layer;
+                    let pushSpeed = 0; // undefined to use default push speed value
+                    let dir = params.dir;
+                    let preloadGun = true;
+
+                    let loot = new Loot(this.game, type, pos, layer, 1, undefined, dir);
+
+                    if (preloadGun) {
+                        loot.isPreloadedGun = true;
+                    }
+
+                    let def = GameObjectDefs[type];
+
+                    if (def.type == "gun") {
+                        // test, from player
+                        // psrc.weaponManager.replaceGun(psrc.curWeapIdx, loot.type);
+
+                        // setTimeout(() => {}, 100);
+
+                        psrc.weaponManager.setWeapon(psrc.curWeapIdx, loot.type, def.maxClip);
+
+                        // psrc.weaponManager.setWeapon(psrc.curWeapIdx, loot.type, 0);
+
+                        // if "preloaded" gun add ammo to inventory
+                        if (loot.isPreloadedGun) {
+                            const ammoAmount = def.ammoSpawnCount;
+                            const ammoType = def.ammo;
+                            const backpackLevel = psrc.getGearLevel(psrc.backpack);
+                            const bagSpace = GameConfig.bagSizes[ammoType]
+                                ? GameConfig.bagSizes[ammoType][backpackLevel]
+                                : 0;
+                            if (psrc.inventory[ammoType] + ammoAmount <= bagSpace) {
+                                psrc.inventory[ammoType] += ammoAmount;
+                                psrc.inventoryDirty = true;
+                            } else {
+                                // spawn new loot object to animate the pickup rejection
+                                const spaceLeft = bagSpace - psrc.inventory[ammoType];
+                                const amountToAdd = spaceLeft;
+                                psrc.inventory[ammoType] += amountToAdd;
+                                psrc.inventoryDirty = true;
+
+                                const amountLeft = ammoAmount - amountToAdd;
+                                // psrc.dropLoot(ammoType, amountLeft);
+                            }
+                        }
+
+                        if (psrc.weapons[psrc.curWeapIdx].ammo <= 0) {
+                            psrc.cancelAction();
+                            psrc.weaponManager.scheduleReload(def.switchDelay);
+                        }
+                    }
+
+                    // up to here: ok
+
+                    // psrc.pickupLoot(loot); // this one broken
+                    // psrc.weaponManager.replaceGun(, loot.type);
+                }
+
+                // psrc.pickupLoot([tierLoot("tier_potato_perks", 1, 1)] as Loot);
