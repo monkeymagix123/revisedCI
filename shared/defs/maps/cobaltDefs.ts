@@ -40,7 +40,7 @@ const mapDef = {
             { name: "ot38_dual", count: 1, weight: 0.4},
         ],
         tier_guns_rare_scout: [
-            { name: "ots30_dual", count: 1, weight: 0.4},
+            { name: "ots38_dual", count: 1, weight: 0.4},
             { name: "p30l_dual", count: 1, weight: 0.4},
             { name: "deagle_dual", count: 1, weight: 0.25},
         ],
